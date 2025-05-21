@@ -68,13 +68,7 @@ export default async function Home() {
                       Browse Products
                     </Button>
                   </Link>
-                  {session?.user ? (
-                    <Link href={'/admin'}>
-                      <Button variant="outline" size="lg" className="px-8">
-                        Creator Dashboard
-                      </Button>
-                    </Link>
-                  ) : (
+                  {session?.user && (
                     <Link href={'/login'}>
                       <Button variant="outline" size="lg" className="px-8">
                         <span className="bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
