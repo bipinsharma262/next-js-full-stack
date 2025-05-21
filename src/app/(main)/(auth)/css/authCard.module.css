@@ -1,0 +1,61 @@
+:root {
+  --blue-purple-start: oklch(0.6 0.19 250.3);
+  --blue-purple-end: oklch(0.65 0.15 283.4);
+}
+
+.card {
+  max-width: 32rem;
+  width: 100%;
+  overflow: hidden;
+}
+
+.headerGradient {
+  width: 100%;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.brandIcon {
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-right: 0.5rem;
+  color: var(--color-foreground);
+}
+
+.brandText {
+  margin-left: 0.5rem;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 700;
+  color: var(--color-foreground);
+}
+
+.contentContainer {
+  width: 100%;
+  padding: 1.5rem;
+  background-color: var(--color-card);
+}
+
+.dividerContainer {
+  position: relative;
+  margin: 1.5rem 0;
+  text-align: center;
+}
+
+.dividerLine {
+  position: absolute;
+  width: 100%;
+  border-top: 1px solid var(--color-border);
+}
+
+.dividerText {
+  position: relative;
+  padding: 0 0.5rem;
+  background-color: var(--color-card);
+  color: var(--color-muted-foreground);
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
