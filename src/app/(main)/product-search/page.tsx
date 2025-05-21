@@ -1,6 +1,6 @@
+import ProductsContent from '@/app/(main)/product-search/components/ProductContent';
 import { allProducts } from '@/app/actions/products';
 import Container from '@/app/components/ui/Container';
-import ProductsTable from '@/app/(main)/products/components/ProductsTable';
 import { Card } from '@/app/components/ui/Card';
 import { Product } from '@prisma/client';
 
@@ -15,7 +15,7 @@ export default async function ProductsPage() {
             <p className="text-gray-600 text-sm sm:text-base">
               Manage your product content from this dashboard
             </p>
-            <ProductsTable data={products as Product[]} />
+            <ProductsContent initialProducts={products as Product[]} />
           </Card>
         </Container>
       </main>

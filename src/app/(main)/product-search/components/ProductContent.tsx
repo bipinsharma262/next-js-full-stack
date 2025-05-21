@@ -2,10 +2,10 @@
 
 import { Product } from "@prisma/client";
 import { useState } from "react";
-import ProductsDisplay from "@/app/(main)/products/components/ProductDisplay";
-import SearchFilter from "@/app/(main)/products/components/SearchFilter";
-import SortOptions from "@/app/(main)/products/components/SortOptions";
-import ViewToggle from "@/app/(main)/products/components/ViewToggle";
+import ProductsDisplay from "@/app/(main)/product-search/components/ProductDisplay";
+import SearchFilter from "@/app/(main)/product-search/components/SearchFilter";
+import SortOptions from "@/app/(main)/product-search/components/SortOptions";
+import ViewToggle from "@/app/(main)/product-search/components/ViewToggle";
 
 export default function ProductsContent({ initialProducts }: { initialProducts: Product[] | null }) {
   const [isGridView, setIsGridView] = useState(true);

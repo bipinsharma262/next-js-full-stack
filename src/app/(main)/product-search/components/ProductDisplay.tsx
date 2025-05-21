@@ -1,4 +1,4 @@
-import ProductCard from '@/app/(main)/products/components/product-card';
+import ProductCard from '@/app/(main)/product-search/components/ProductCard';
 import { Card } from '@/app/components/ui/Card';
 import { Product } from '@prisma/client';
 import Image from 'next/image';

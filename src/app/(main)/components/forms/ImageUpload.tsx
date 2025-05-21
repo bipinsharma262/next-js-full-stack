@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { ChangeEvent, useEffect, useRef, useState, useTransition } from 'react';
 
 import { Label } from '@/app/components/ui/Label';
-import { uploadImage } from '@/app/(main)/products/actions/image';
+import { uploadImage } from '@/app/actions/image';
 
 interface ImageUploadProps {
   value: string;

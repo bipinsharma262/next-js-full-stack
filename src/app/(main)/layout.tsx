@@ -2,8 +2,8 @@
 import { authOptions } from '@/lib/services/next-auth/auth';
 import { getServerSession } from 'next-auth';
 import React from 'react';
-import Navbar from './components/layouts/Navbar';
-import Footer from './components/layouts/Footer';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 
 interface MainLayoutProps {
   children: React.ReactNode;
