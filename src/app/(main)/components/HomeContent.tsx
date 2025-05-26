@@ -6,7 +6,6 @@ import HeroImage from '@/app/(main)/components/HeroImage';
 import Link from 'next/link';
 
 export default function HeroContent() {
-    console.log("====Hero Content=======")
   return (
     <Container className="relative" size="xl">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
