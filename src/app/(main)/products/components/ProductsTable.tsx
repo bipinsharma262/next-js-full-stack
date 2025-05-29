@@ -3,12 +3,13 @@
 import { Product } from '@prisma/client';
 import { Edit, Trash2 } from 'lucide-react';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import PaginationButtons from '@/app/(main)/products/components/PaginationButtons';
 import { Button } from '@/app/components/ui/Button';
 import DeleteProductModal from './DeleteProductModal';
 import Link from 'next/link';
+import { allProducts } from '@/app/actions/products';
 
 interface ProductsTableProps {
   data: Product[];
@@ -17,6 +18,7 @@ interface ProductsTableProps {
 export default function ProductsTable({ data }: ProductsTableProps) {
   const [currentPage, setCurrentPage] = useState(1);
   const [isModalOpen, setModalOpen] = useState(false);
+  //const [data, setData] = useState<Product[]>([]); for csr
   const [selected, setSelected] = useState<{ id: string; title: string }>({
     id: '',
     title: '',
@@ -38,6 +40,14 @@ export default function ProductsTable({ data }: ProductsTableProps) {
   const handlePageChange = (pageNumber: number) => {
     setCurrentPage(pageNumber);
   };
+
+  /*useEffect(() => {
+    const fetchProduct = async () => {
+      const products = await allProducts();
+      setData(products);
+    };
+    fetchProduct();
+  }, []); for csr*/
 
   return (
     <div className="space-y-4">
