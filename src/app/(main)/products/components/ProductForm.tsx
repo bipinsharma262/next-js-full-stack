@@ -3,7 +3,6 @@
 import { useEffect, useState, useTransition, FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import { z } from 'zod';
-import { Product } from '@prisma/client';
 import { ProductSchema } from '@/lib/utils/schema';
 import { createProduct, updateProduct } from '@/app/actions/products';
 import { Button } from '@/app/components/ui/Button';
@@ -18,6 +17,7 @@ interface ProductFormProps {
     title: string;
     description: string | null;
     image: string | null;
+    id?:string
   } | null;
 }
 
@@ -71,7 +71,7 @@ export default function ProductForm({ data }: ProductFormProps) {
     }
 
     startTransition(() => {
-      const action = data ? updateProduct(formData, data.id) : createProduct(formData);
+      const action = data ? updateProduct(formData, String(data?.id)) : createProduct(formData);
 
       action
         .then((res) => {

@@ -9,13 +9,14 @@ export class GeminiAIService implements AIGenerationService {
   }
 
   async generateContent(prompt: string): Promise<string> {
-    try {
-      const model = this.genAI.getGenerativeModel({ model: "gemini-1.5-flash-8b" });
-      const result = await model.generateContent(prompt);
-      const response = await result.response;
-      return response.text();
-    } catch (error) {
-      throw new Error('Failed to generate content');
-    }
+  try {
+    const model  = this.genAI.getGenerativeModel({ model: 'gemini-1.5-flash-8b' });
+    const result = await model.generateContent(prompt);
+    return result.response.text();
+  } catch (err) {
+    const message = err instanceof Error ? err.message : String(err);
+    console.error(message);
+    throw new Error(message);
   }
+}
 }

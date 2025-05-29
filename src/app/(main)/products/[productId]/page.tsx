@@ -7,7 +7,7 @@ import ProductDetailsPanel from '@/app/(main)/products/[productId]/components/Pr
 import { getProductById } from '@/lib/services/product/product';
 import { redirect } from 'next/navigation';
 
-export const revalidate = 120;
+
 
 export default async function ProductIdPage({
   params,

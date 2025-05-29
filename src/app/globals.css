@@ -110,33 +110,22 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 @theme {
---animate-float: float 6s ease-in-out infinite;
+  --animate-float: float 6s ease-in-out infinite;
 
-@keyframes float {
-  0%, 
-  100% {
-    transform: translateY(0)
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
   }
-  50% {
-    transform: translateY(-10px)
-  }
-};
-
-} 
+}
 
 @theme {
-  --animate-fade-in: fade-in 0.3s ease-out
-
-  @keyframes fade-in {
-    0% { 
-      opacity: 0
-      transform: translateY(10px) 
-      }
-    100% { 
-      opacity: 1 
-      transform: translateY(0) 
-    }
-  };
+  --animate-fade-in: fade-in 0.3s ease-out @keyframes fade-in {0% {opacity: 0
+    transform: translateY(10px)} 100% {opacity: 1 transform: translateY(0)}};
 }
 
 body {
@@ -158,5 +147,7 @@ body {
   backdrop-filter: blur(10px);
   border-radius: 0.5rem;
   border: 1px solid rgba(209, 213, 219, 0.3);
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }

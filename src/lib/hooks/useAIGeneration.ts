@@ -26,7 +26,10 @@ export function useAIGeneration() {
       const description = await aiService.generateContent(prompt);
       return description;
     } catch (error) {
-      setError('Failed to generate description. Please try again.');
+      if (error instanceof Error) {
+        console.log(error.message);
+        setError(error.message);
+      }
       return null;
     }
   };
@@ -35,6 +38,6 @@ export function useAIGeneration() {
     loading,
     error,
     generateDescription,
-    startTransition
+    startTransition,
   };
 }

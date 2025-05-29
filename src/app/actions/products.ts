@@ -6,7 +6,6 @@ import { z } from 'zod';
 
 import { db } from '@/lib/utils/db';
 import { ProductSchema } from '@/lib/utils/schema';
-import { getUserById } from '@/lib/services/auth/user';
 import { authOptions } from '@/lib/services/next-auth/auth';
 import { deleteFromCloudinary } from '@/lib/services/product/cloudinary';
 import { getAllProducts, getProductById } from '@/lib/services/product/product';
