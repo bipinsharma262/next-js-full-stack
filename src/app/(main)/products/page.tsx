@@ -3,6 +3,7 @@ import Container from '@/app/components/ui/Container';
 import ProductsTable from '@/app/(main)/products/components/ProductsTable';
 import { Card } from '@/app/components/ui/Card';
 import { Product } from '@prisma/client';
+import { Metadata } from 'next';
 
 export default async function ProductsPage() {
   const products = await allProducts();
@@ -21,4 +22,11 @@ export default async function ProductsPage() {
       </main>
     </>
   );
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: 'This is title for page',
+    description: 'This is description page for product',
+  };
 }
