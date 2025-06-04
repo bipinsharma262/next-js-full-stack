@@ -1,15 +1,15 @@
 'use client';
 
+import { useState, useTransition } from 'react';
 import { Button } from '@/app/components/ui/Button';
 import { Label } from '@/app/components/ui/Label';
 import { ProductSchema } from '@/lib/utils/schema';
-import { Loader2, Sparkles } from 'lucide-react';
+import { Sparkles, Loader } from 'lucide-react';
 import { z } from 'zod';
-import { useAIGeneration } from '@/lib/hooks/useAIGeneration';
 import { TextArea } from '@/app/components/ui/Textarea';
+import { generateAIDescription } from '@/app/actions/ai';
 
-
-interface AIGenerateDescriptionProps {
+interface Props {
   title: string;
   description: string;
   handleChange: (field: keyof z.infer<typeof ProductSchema>, value: string) => void;
@@ -21,36 +21,39 @@ export default function AIGenerateDescription({
   description,
   handleChange,
   error: propError,
-}: AIGenerateDescriptionProps) {
-  const { loading, error: generationError, generateDescription, startTransition } = useAIGeneration();
+}: Props) {
+  const [localError, setLocalError] = useState<string | undefined>();
+  const [isPending, startTransition] = useTransition();
 
-  const handleDescriptionGeneration = async () => {
+  const handleDescriptionGeneration = () =>
     startTransition(async () => {
-      const generatedDescription = await generateDescription(title);
-      if (generatedDescription) {
-        handleChange('description', generatedDescription);
+      try {
+        const desc = await generateAIDescription(title);
+        handleChange('description', desc);
+      } catch (err) {
+        setLocalError((err as Error).message);
       }
     });
-  };
 
   return (
     <div className="mt-2">
       <div className="flex justify-between mb-2">
         <Label htmlFor="description" className="mt-2">
-          Description <span className="text-red-500">*</span>
+          Description<span className="text-red-500">*</span>
         </Label>
+
         <Button
           type="button"
           size="sm"
           variant="outline"
-          className="flex items-center gap-1 text-xs !bg-gradient-to-r from-blue-500 to-purple-600 text-white hover:!text-white hover:opacity-90 transition-all"
+          disabled={isPending}
           onClick={handleDescriptionGeneration}
-          disabled={loading}
+          className="flex items-center gap-1 text-xs !bg-gradient-to-r from-blue-500 to-purple-600 text-white hover:!text-white hover:opacity-90 disabled:opacity-60 transition-all"
         >
-          {loading ? (
+          {isPending ? (
             <>
-              <Loader2 size={14} className="animate-spin" />
-              Generating...
+              <Loader size={14} className="animate-spin" />
+              Generating…
             </>
           ) : (
             <>
@@ -60,6 +63,7 @@ export default function AIGenerateDescription({
           )}
         </Button>
       </div>
+
       <TextArea
         id="description"
         value={description}
@@ -67,7 +71,7 @@ export default function AIGenerateDescription({
         className="w-full"
         placeholder="Enter product description or generate one with AI"
         rows={4}
-        error={propError || generationError}
+        error={propError ?? localError}
       />
     </div>
   );
